@@ -39,8 +39,7 @@ open a terminal in cmake-debug-files and type:
    ./pablitto_pub --help
   ```
 
-Link to youtube tutorial:   
- 
+
 ## how to use pablitto_sub
 
 open a terminal in cmake-debug-files and type:
@@ -49,7 +48,7 @@ open a terminal in cmake-debug-files and type:
    ./pablitto_sub --help
   ```
   
-  Link to youtube tutorial:  
+
   
   ## how to use libpablitto.a
   
@@ -62,3 +61,5 @@ open a terminal in cmake-debug-files and type:
   in your_app include  ``#include "pablittoMQTT.hh" `` and use API, visit the doc
   
   
+  
+  Playlist YouTube: https://www.youtube.com/watch?v=shWXoqBa2OY&list=PLcJaq9O6tuqb-dEidWH7ExByMqrzLxRYN
