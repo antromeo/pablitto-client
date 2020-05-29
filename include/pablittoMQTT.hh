@@ -73,12 +73,11 @@ public:
     void analyze_packet(std::vector<byte_t> msg, bool debug=false);
 
     byte_t connectMQTT(std::string client_id, uint16_t keep_alive);
-    void connectMQTT(std::string client_id, std::string username,vector<byte_t> password);
-    void connectMQTT(std::string client_id, std::string username,vector<byte_t> password, bool clean_session);
-    void connectMQTT(std::string client_id, std::string username,vector<byte_t> password, bool clean_session, uint16_t keep_alive);
-    void connectMQTT(std::string client_id, std::string username,vector<byte_t> password, bool clean_session, uint16_t keep_alive, bool will_flag, vector<byte_t> will_message, byte_t will_qos=0x00, bool will_retain=false);
+    byte_t connectMQTT(std::string client_id, std::string username,vector<byte_t> password, uint16_t keep_alive);
+    byte_t connectMQTT(std::string client_id, std::string username,vector<byte_t> password, std::string will_topic, bool will_flag,
+            vector<byte_t> will_message, bool will_retain=false, uint16_t keep_alive=0x60, byte_t will_qos=AT_MOST_ONCE);
 
-    uint16_t publish(std::string topic_name, std::vector<byte_t> message, bool retain, byte_t qos=0x00);
+    uint16_t publish(std::string topic_name, std::vector<byte_t> message, bool retain, byte_t qos=AT_MOST_ONCE);
     uint16_t subscribe(std::string topic_name, byte_t qos);
     uint16_t subscribe(std::vector<string> topic_name_vector, std::vector<byte_t> qos_vector);
     uint16_t unsubscribe(std::string topic_name);
