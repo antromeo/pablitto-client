@@ -33,6 +33,9 @@ namespace packets{
     public:
         ConnectPacket(FixedHeader fh);
         ConnectPacket(FixedHeader fh,  string client_id, uint16_t keep_alive=0x60);
+        ConnectPacket(FixedHeader fh,  string client_id, string username, vector<byte_t> password,uint16_t keep_alive=0x60);
+        ConnectPacket(FixedHeader fh,  string client_id, string username, vector<byte_t> password, std::string will_topic, std::vector<byte_t> will_message,
+                uint16_t keep_alive=0x60);
 
 
         std::vector<byte_t> boxing();
