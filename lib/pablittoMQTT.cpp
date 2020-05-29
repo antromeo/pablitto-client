@@ -201,6 +201,79 @@ byte_t PablittoMQTT::connectMQTT(std::string client_id, uint16_t keep_alive){
     return NOTHING_RESPONSE;
 }
 
+byte_t PablittoMQTT::connectMQTT(std::string client_id, std::string username,vector<byte_t> password, uint16_t keep_alive){
+    packets::FixedHeader fixed_header;
+    fixed_header.set_message_type(CONNECT);
+    fixed_header.set_qos(AT_MOST_ONCE);
+    fixed_header.set_retain(0x00);
+    fixed_header.set_dup(0x00);
+    packets::ConnectPacket connect_packet(fixed_header, client_id, username, password, keep_alive);
+
+    std::vector<byte_t> msg=connect_packet.boxing();
+
+    try{
+        if(debug) std::clog<<"CONNECT: Sending"<<std::endl;
+
+        socketTCP.sendByteTCP(&msg[0], msg.size());
+    } catch(const char * msg){
+        std::clog<<msg<<std::endl;
+    }
+
+    int attemps=MAX_ATTEMPTS;
+    do{
+        if(queue_connack_packet.empty()){
+            std::this_thread::sleep_for(std::chrono::milliseconds(200));
+        } else{
+            packets::ConnackPacket connack_packet=dequeue_packet(queue_connack_packet);
+            if (connack_packet.get_return_code()==0x00){
+                this->seconds=int(connect_packet.get_keep_alive());
+                keep_alive_thread=std::thread(&PablittoMQTT::keep_alive_routine, this);
+            }
+            return connack_packet.get_return_code();
+        }
+        attemps--;
+    } while(attemps>0);
+    return NOTHING_RESPONSE;
+}
+
+
+byte_t PablittoMQTT::connectMQTT(std::string client_id, std::string username, vector<byte_t> password, std::string will_topic, bool will_flag,
+        vector<byte_t> will_message,  bool will_retain, uint16_t keep_alive, byte_t will_qos) {
+    packets::FixedHeader fixed_header;
+    fixed_header.set_message_type(CONNECT);
+    fixed_header.set_qos(AT_MOST_ONCE);
+    fixed_header.set_retain(0x00);
+    fixed_header.set_dup(0x00);
+
+    packets::ConnectPacket connect_packet(fixed_header,  client_id, username, password,  will_topic,  will_message, keep_alive);
+
+    std::vector<byte_t> msg=connect_packet.boxing();
+
+    try{
+        if(debug) std::clog<<"CONNECT: Sending"<<std::endl;
+
+        socketTCP.sendByteTCP(&msg[0], msg.size());
+    } catch(const char * msg){
+        std::clog<<msg<<std::endl;
+    }
+
+    int attemps=MAX_ATTEMPTS;
+    do{
+        if(queue_connack_packet.empty()){
+            std::this_thread::sleep_for(std::chrono::milliseconds(200));
+        } else{
+            packets::ConnackPacket connack_packet=dequeue_packet(queue_connack_packet);
+            if (connack_packet.get_return_code()==0x00){
+                this->seconds=int(connect_packet.get_keep_alive());
+                keep_alive_thread=std::thread(&PablittoMQTT::keep_alive_routine, this);
+            }
+            return connack_packet.get_return_code();
+        }
+        attemps--;
+    } while(attemps>0);
+    return NOTHING_RESPONSE;
+}
+
 uint16_t PablittoMQTT::publish(std::string topic_name, std::vector<byte_t> payload, bool retain,  byte_t qos) {
     packets::FixedHeader fixed_header;
     fixed_header.set_message_type(PUBLISH);
