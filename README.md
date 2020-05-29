@@ -22,10 +22,11 @@ The library was tested on Debian 10 buster
      
 3) Build 
     ```
-    cd pablitto_client
+    cd pablitto-client
     mkdir cmake-debug-files
     cd cmake-debug-files
-    make ..
+    cmake ..
+    make 
     ```
     
   4) publitto_pub, publitto_sub are examples that exchange strings as payloads. libpablitto.a is static library.
