@@ -22,6 +22,43 @@ packets::ConnectPacket::ConnectPacket(FixedHeader fh, string client_id, uint16_t
     this->client_id=client_id;
 };
 
+packets::ConnectPacket::ConnectPacket(FixedHeader fh, string client_id, string username, vector<byte_t> password, uint16_t keep_alive) {
+    this->fixed_header=fh;
+    this->protocol_name="MQTT";
+    this->protocol_version=0x04;
+    this->clean_session=false;
+    this->will_flag=false;
+    this->will_qos=0x00;
+    this->will_retain=false;
+    this->username_flag=true;
+    this->password_flag=true;
+    this->reserved_bit=false;
+    this->keep_alive=keep_alive;
+    this->client_id=client_id;
+    this->username=username;
+    this->password=password;
+}
+
+packets::ConnectPacket::ConnectPacket(FixedHeader fh, string client_id, string username, vector<byte_t> password, std::string will_topic, std::vector<byte_t> will_message, uint16_t keep_alive) {
+    this->fixed_header=fh;
+    this->protocol_name="MQTT";
+    this->protocol_version=0x04;
+    this->clean_session=false;
+    this->will_flag=true;
+    this->will_qos=0x00;
+    this->will_retain=false;
+    this->username_flag=true;
+    this->password_flag=true;
+    this->reserved_bit=false;
+    this->keep_alive=keep_alive;
+    this->client_id=client_id;
+    this->username=username;
+    this->password=password;
+    this->will_topic=will_topic;
+    this->will_message=will_message;
+    this->will_retain=false;
+}
+
 
 std::vector<byte_t> packets::ConnectPacket::boxing() {
     std::vector<byte_t> packet_bytes;
