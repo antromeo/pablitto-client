@@ -23,7 +23,7 @@ int main(int argc, char* argv[]){
 
     time_t current_time;
     current_time=time(NULL);
-    std::string client_id="publittosub-id"+toString(current_time);
+    std::string client_id="pablittosub-id"+toString(current_time);
 
 
     std::vector<string> args(argv+1, argv+argc);
@@ -103,8 +103,8 @@ int target(byte_t return_code, std::string client_id, std::vector<byte_t> str_by
 
 
 void show_help_sub(){
-    std::cout<<"PUBLITTO"<<std::endl;
-    std::cout<<"publitto_sub help"<<std::endl;
+    std::cout<<"PABLITTO"<<std::endl;
+    std::cout<<"pablitto_sub help"<<std::endl;
     std::cout<<"[-p port] to select port number"<<std::endl;
     std::cout<<"[-h broker_address] to select ip address"<<std::endl;
     std::cout<<"[-t topic] to enter topic_name"<<std::endl;
