@@ -35,7 +35,7 @@
 //#include <cstdint>
 //#include <vector>
 
-typedef unsigned char byte_t;
+using byte_t=unsigned char;
 
 
 
