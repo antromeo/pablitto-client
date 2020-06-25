@@ -13,7 +13,8 @@ namespace packets{
         FixedHeader fixed_header;
 
     public:
-
+        ControlPacket(){};
+        virtual ~ControlPacket(){};
         virtual std::vector<byte_t> boxing()=0;
         virtual void unboxing(std::vector<byte_t>& variable_header)=0;
         virtual void info()=0;
