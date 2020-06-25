@@ -1,5 +1,5 @@
-#ifndef __PUBLITTO_PUBACK_PACKET_HH
-#define __PUBLITTO_PUBACK_PACKET_HH
+#ifndef __PABLITTO_PUBACK_PACKET_HH
+#define __PABLITTO_PUBACK_PACKET_HH
 
 #include <iostream>
 #include <string>
