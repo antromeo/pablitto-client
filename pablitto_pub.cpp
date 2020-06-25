@@ -20,7 +20,7 @@ int main(int argc, char* argv[]){
     time_t current_time;
     current_time=time(NULL);
 
-    std::string client_id="publittopub-id"+toString(current_time);
+    std::string client_id="pablittopub-id"+toString(current_time);
 
     std::vector<string> args(argv+1, argv+argc);
 
@@ -61,9 +61,6 @@ int target(byte_t return_code, std::string client_id, std::vector<byte_t> str_by
             mqtt_client.publish(topic, str_bytes, retain, qos);
             mqtt_client.disconnect();
             exit(1);
-            //mqtt_client.stop();
-            return 1;
-
         case UNACCEPTABLE_PROTOCOL_VERSION:
             std::cout<<"unacceptable protocol version"<<std::endl;
             break;
@@ -168,8 +165,8 @@ int analyze_arguments_pub(std::vector<string> args, std::string& client_id, std:
 
 
 void show_help_pub(){
-    std::cout<<"PUBLITTO"<<std::endl;
-    std::cout<<"publitto_pub help"<<std::endl;
+    std::cout<<"PABLITTO"<<std::endl;
+    std::cout<<"pablitto_pub help"<<std::endl;
     std::cout<<"[-p port] to select port number"<<std::endl;
     std::cout<<"[-h broker_address] to select ip address"<<std::endl;
     std::cout<<"[-t topic] to enter topic_name"<<std::endl;
