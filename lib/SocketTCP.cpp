@@ -20,6 +20,7 @@ this->server_address.sin_family = AF_INET; //Ipv4
 
 SocketTCP::~SocketTCP(){ //close connection TCP
     close(this->socket_descriptor);
+    delete(buffer);
 }
 
 void SocketTCP::closeTCP(){ //close connection TCP
@@ -82,6 +83,7 @@ ssize_t SocketTCP::readByteTCP(std::vector<unsigned char>& data){
         num_byte_read=read(this->socket_descriptor, &buffer[0], MAX_LEN);
         if (num_byte_read==-1){
             mutex.unlock();
+            delete(buffer);
             return -1;
         }
         else if(num_byte_read>0){
@@ -90,8 +92,10 @@ ssize_t SocketTCP::readByteTCP(std::vector<unsigned char>& data){
             std::copy(buffer, buffer+remaining_len+2, data.begin());
         }
         mutex.unlock();
+        delete(buffer);
         return num_byte_read;
 
     }
+    delete(buffer);
     return -1;
 }
