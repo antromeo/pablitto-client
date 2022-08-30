@@ -133,7 +133,7 @@ void packets::ConnectPacket::unboxing(std::vector<byte_t>& msg){
 
 
 void packets::ConnectPacket::info(){
-    std::cout<<"STAMPA FIXED HEADER"<<std::endl;
+    std::cout<<"----PRINT FIXED HEADER----"<<std::endl;
     fixed_header.to_String();
     std::cout<<"protocol_name="<<protocol_name<<std::endl;
     std::cout<<"protocol_version="<<std::bitset<8>(protocol_version)<<std::endl;
@@ -152,5 +152,6 @@ void packets::ConnectPacket::info(){
     std::cout<<"username="<<username<<std::endl;
     for (byte_t element:password)
         std::cout<<"(vector) password="<<bitset<8>(element)<<std::endl;
+     std::cout<<"--------"<<std::endl;
 
 }

@@ -44,6 +44,7 @@ void packets::UnsubackPacket::unboxing(std::vector<byte_t>& msg) {
 }
 
 void packets::UnsubackPacket::info(){
-    std::cout<<"INFO_UNSUBACK="<<std::endl;
+    std::cout<<"----INFO_UNSUBACK----"<<std::endl;
     std::cout<<"message_id="<<std::bitset<16>(message_id)<<std::endl;
+    std::cout<<"--------"<<std::endl;
 }
