@@ -54,9 +54,10 @@ void packets::SubackPacket::unboxing(std::vector<byte_t>& msg) {
 }
 
 void packets::SubackPacket::info(){
-    std::cout<<"INFO_SUBACK="<<std::endl;
+    std::cout<<"----INFO_SUBACK----"<<std::endl;
     std::cout<<"message_id="<<std::bitset<16>(message_id)<<std::endl;
     for (byte_t b:return_code_vector){
         std::cout<<"qos received="<<b<<std::endl;
     }
+    std::cout<<"--------"<<std::endl;
 }

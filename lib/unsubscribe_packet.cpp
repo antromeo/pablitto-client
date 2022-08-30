@@ -67,9 +67,10 @@ void packets::UnsubscribePacket::unboxing(std::vector<byte_t>& msg) {
 }
 
 void packets::UnsubscribePacket::info(){
-    std::cout<<"INFO_UNSUBSCRIBE="<<std::endl;
+    std::cout<<"----INFO_UNSUBSCRIBE----"<<std::endl;
     std::cout<<"message_id="<<std::bitset<16>(message_id)<<std::endl;
     for (std::string str:topics_vector){
         std::cout<<"topic="<<str<<std::endl;
     }
+    std::cout<<"--------"<<std::endl;
 }

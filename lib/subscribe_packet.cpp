@@ -67,7 +67,7 @@ void packets::SubscribePacket::unboxing(std::vector<byte_t>& msg) {
 }
 
 void packets::SubscribePacket::info(){
-    std::cout<<"INFO_SUBSCRIBE="<<std::endl;
+    std::cout<<"----INFO_SUBSCRIBE----"<<std::endl;
     std::cout<<"message_id="<<std::bitset<16>(message_id)<<std::endl;
     int k=0;
     for (std::string str:topics){
@@ -75,4 +75,5 @@ void packets::SubscribePacket::info(){
         std::cout<<"qos="<<qos_vector[k]<<std::endl;
         k++;
     }
+     std::cout<<"--------"<<std::endl;
 }

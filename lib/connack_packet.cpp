@@ -41,8 +41,9 @@ void packets::ConnackPacket::unboxing(std::vector<byte_t>& msg) {
 }
 
 void packets::ConnackPacket::info(){
-    std::cout<<"INFO_CONNACK="<<std::endl;
+    std::cout<<"----INFO_CONNACK----"<<std::endl;
     std::cout<<"session_present="<<session_present<<std::endl;
     std::cout<<"return_code="<<std::bitset<8>(return_code)<<std::endl; //0x00 is connection accepted
+    std::cout<<"--------"<<std::endl;
 }
 

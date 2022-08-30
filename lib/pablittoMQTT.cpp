@@ -133,9 +133,11 @@ void PablittoMQTT::analyze_packet(std::vector<byte_t> msg, bool debug){
         }
         case PUBLISH:{
             if(debug) std::clog<<"PUBLISH: Received"<<std::endl;
-
+            
             packets::PublishPacket publish_packet(fixed_header);
             publish_packet.unboxing(msg);
+            // PRINT MESSAGE
+            //publish_packet.info();
             enqueue_packet(queue_publish_packet, publish_packet);
             break;
         }
